@@ -1093,6 +1093,40 @@ header{
     background:#0094e3;
 }
 
+.producto-precios{
+    display:flex;
+    align-items:center;
+    gap:8px;
+}
+
+.precio-anterior{
+    display:none;
+
+    color:#94a3b8;
+    font-size:.9rem;
+
+    text-decoration:line-through;
+}
+
+.descuento-badge{
+    display:none;
+
+    padding:3px 8px;
+
+    background:#16a34a;
+    color:white;
+
+    border-radius:999px;
+
+    font-size:.72rem;
+    font-weight:700;
+}
+
+.producto-card.en-oferta .precio-anterior,
+.producto-card.en-oferta .descuento-badge{
+    display:inline-block;
+}
+
 .branch-item{
     display:flex;
     align-items:center;
