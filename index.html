@@ -4350,47 +4350,110 @@ modalSucursalTienda.addEventListener("click",(e)=>{
 
 });
 
+    
 function inicializarPresentaciones(){
 
     document
-    .querySelectorAll(
-        ".presentacion-select"
-    )
+    .querySelectorAll(".presentacion-select")
     .forEach(select=>{
+
+        const actualizarPresentacion = ()=>{
+
+            const card =
+                select.closest(".producto-card");
+
+            const opcion =
+                select.selectedOptions[0];
+
+            const precio =
+                card.querySelector(".precio");
+
+            const precioAnterior =
+                card.querySelector(".precio-anterior");
+
+            const descuentoBadge =
+                card.querySelector(".descuento-badge");
+
+
+            // PRECIO ACTUAL
+
+            precio.textContent =
+                `$${select.value}`;
+
+
+            // DESCUENTO
+
+            if(
+                opcion.dataset.descuento === "true" &&
+                precioAnterior &&
+                descuentoBadge
+            ){
+
+                const original =
+                    Number(opcion.dataset.precioOriginal);
+
+                const oferta =
+                    Number(select.value);
+
+                const porcentaje =
+                    Math.round(
+                        ((original - oferta) / original) * 100
+                    );
+
+                precioAnterior.textContent =
+                    `$${original}`;
+
+                descuentoBadge.textContent =
+                    `-${porcentaje}%`;
+
+                card.classList.add("en-oferta");
+
+            }else{
+
+                if(precioAnterior){
+                    precioAnterior.textContent = "";
+                }
+
+                if(descuentoBadge){
+                    descuentoBadge.textContent = "";
+                }
+
+                card.classList.remove("en-oferta");
+
+            }
+
+
+            // IMAGEN, SOLO SI ESA PRESENTACIÓN TIENE UNA
+
+            const imagen =
+                card.querySelector(".producto-img");
+
+            const nuevaImagen =
+                opcion.dataset.img;
+
+            if(imagen && nuevaImagen){
+
+                imagen.src = nuevaImagen;
+
+            }
+
+        };
+
 
         select.addEventListener(
             "change",
-            ()=>{
-
-                const card =
-                select.closest(
-                    ".producto-card"
-                );
-
-                const precio =
-                card.querySelector(
-                    ".precio"
-                );
-
-                precio.textContent =
-                `$${select.value}`;
-
-                const imagen =
-                card.querySelector(
-                    ".producto-img"
-                );
-
-                imagen.src =
-                select.selectedOptions[0]
-                .dataset.img;
-
-            }
+            actualizarPresentacion
         );
+
+
+        // IMPORTANTE:
+        // actualiza también al cargar la página
+
+        actualizarPresentacion();
 
     });
 
 }
-
 document
 .querySelectorAll(".ir-tienda")
 .forEach(btn=>{
