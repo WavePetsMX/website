@@ -4350,20 +4350,25 @@ modalSucursalTienda.addEventListener("click",(e)=>{
 
 });
 
-    
 function inicializarPresentaciones(){
 
     document
     .querySelectorAll(".presentacion-select")
     .forEach(select=>{
 
-        const actualizarPresentacion = ()=>{
+        function actualizarPresentacion(){
 
-            const card =
-                select.closest(".producto-card");
+            const card = select.closest(".producto-card");
 
-            const opcion =
-                select.selectedOptions[0];
+            const opcion = select.selectedOptions[0];
+
+            const precioOriginal = Number(select.value);
+
+            const descuento = Number(opcion.dataset.descuento || 0);
+
+            const precioFinal = Math.round(
+                precioOriginal * (1 - descuento / 100)
+            );
 
             const precio =
                 card.querySelector(".precio");
@@ -4371,90 +4376,66 @@ function inicializarPresentaciones(){
             const precioAnterior =
                 card.querySelector(".precio-anterior");
 
-            const descuentoBadge =
+            const badge =
                 card.querySelector(".descuento-badge");
 
 
-            // PRECIO ACTUAL
+            // Precio principal
 
-            precio.textContent =
-                `$${select.value}`;
+            precio.textContent = `$${precioFinal}`;
 
 
-            // DESCUENTO
+            // Mostrar u ocultar descuento
 
-            if(
-                opcion.dataset.descuento === "true" &&
-                precioAnterior &&
-                descuentoBadge
-            ){
-
-                const original =
-                    Number(opcion.dataset.precioOriginal);
-
-                const oferta =
-                    Number(select.value);
-
-                const porcentaje =
-                    Math.round(
-                        ((original - oferta) / original) * 100
-                    );
+            if(descuento > 0){
 
                 precioAnterior.textContent =
-                    `$${original}`;
+                    `$${precioOriginal}`;
 
-                descuentoBadge.textContent =
-                    `-${porcentaje}%`;
+                badge.textContent =
+                    `-${descuento}%`;
 
                 card.classList.add("en-oferta");
 
             }else{
 
-                if(precioAnterior){
-                    precioAnterior.textContent = "";
-                }
+                precioAnterior.textContent = "";
 
-                if(descuentoBadge){
-                    descuentoBadge.textContent = "";
-                }
+                badge.textContent = "";
 
                 card.classList.remove("en-oferta");
 
             }
 
 
-            // IMAGEN, SOLO SI ESA PRESENTACIÓN TIENE UNA
+            // Cambiar imagen si la presentación tiene una
 
             const imagen =
                 card.querySelector(".producto-img");
 
-            const nuevaImagen =
-                opcion.dataset.img;
+            if(imagen && opcion.dataset.img){
 
-            if(imagen && nuevaImagen){
-
-                imagen.src = nuevaImagen;
+                imagen.src = opcion.dataset.img;
 
             }
 
-        };
-
+        }
 
         select.addEventListener(
             "change",
             actualizarPresentacion
         );
 
-
-        // IMPORTANTE:
-        // actualiza también al cargar la página
+        // Actualizar al cargar la página
 
         actualizarPresentacion();
 
     });
 
 }
-document
+
+            
+    document
 .querySelectorAll(".ir-tienda")
 .forEach(btn=>{
 
