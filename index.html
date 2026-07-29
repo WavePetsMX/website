@@ -4389,19 +4389,25 @@ function inicializarPresentaciones(){
 
             if(descuento > 0){
 
-                precioAnterior.textContent =
-                    `$${precioOriginal}`;
+if(precioAnterior){
+    precioAnterior.textContent = `$${precioOriginal}`;
+}
 
-                badge.textContent =
-                    `-${descuento}%`;
+if(badge){
+    badge.textContent = `-${descuento}%`;
+}
 
                 card.classList.add("en-oferta");
 
             }else{
 
-                precioAnterior.textContent = "";
+if(precioAnterior){
+    precioAnterior.textContent = "";
+}
 
-                badge.textContent = "";
+if(badge){
+    badge.textContent = "";
+}
 
                 card.classList.remove("en-oferta");
 
