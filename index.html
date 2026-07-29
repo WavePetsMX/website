@@ -4350,6 +4350,20 @@ modalSucursalTienda.addEventListener("click",(e)=>{
 
 });
 
+    const descuentosMarca = {
+
+    nupec: 10,
+
+    bravecto: 0,
+
+    royalcanin: 0,
+
+    hills: 0,
+
+    purina: 0
+
+};
+    
 function inicializarPresentaciones(){
 
     document
@@ -4362,14 +4376,28 @@ function inicializarPresentaciones(){
 
             const opcion = select.selectedOptions[0];
 
-            const precioOriginal = Number(select.value);
+const precioOriginal = Number(select.value);
 
-            const descuento = Number(opcion.dataset.descuento || 0);
+// Marca del producto
+const marca = card.dataset.marca;
 
-            const precioFinal = Math.round(
-                precioOriginal * (1 - descuento / 100)
-            );
+// Descuento configurado para la marca
+const descuentoMarca = descuentosMarca[marca] || 0;
 
+// Descuento individual de la presentación
+const descuentoIndividual = Number(opcion.dataset.descuento || 0);
+
+// Si el individual es mayor a 0, tiene prioridad.
+// Si es 0, usa el de la marca.
+const descuento =
+    descuentoIndividual > 0
+        ? descuentoIndividual
+        : descuentoMarca;
+
+// Calcular el precio final
+const precioFinal = Math.round(
+    precioOriginal * (1 - descuento / 100)
+);
             const precio =
                 card.querySelector(".precio");
 
