@@ -3230,6 +3230,14 @@ Tratamiento para pelajes con nudos severos.
 
 <script>
 
+    if ("scrollRestoration" in history) {
+    history.scrollRestoration = "manual";
+}
+
+window.addEventListener("load", () => {
+    window.scrollTo(0, 0);
+});
+
 const modal = document.getElementById("modal-sucursal");
 
 const modalEstetica = document.getElementById("modal-estetica");
