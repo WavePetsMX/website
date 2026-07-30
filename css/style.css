@@ -4575,7 +4575,7 @@ html{
 
     bottom:20px;
 
-    display:flex;
+    display:none;
 
     align-items:center;
 
@@ -4599,15 +4599,15 @@ html{
 
     transform-origin:right center;
 
-transition:
-    width .75s cubic-bezier(.18,.9,.25,1),
-    height .75s cubic-bezier(.18,.9,.25,1),
-    padding .75s cubic-bezier(.18,.9,.25,1),
-    border-radius .75s cubic-bezier(.18,.9,.25,1),
-    gap .75s cubic-bezier(.18,.9,.25,1),
-    transform .75s cubic-bezier(.18,.9,.25,1),
-    background .35s,
-    box-shadow .35s;
+    transition:
+        width .75s cubic-bezier(.18,.9,.25,1),
+        height .75s cubic-bezier(.18,.9,.25,1),
+        padding .75s cubic-bezier(.18,.9,.25,1),
+        border-radius .75s cubic-bezier(.18,.9,.25,1),
+        gap .75s cubic-bezier(.18,.9,.25,1),
+        transform .75s cubic-bezier(.18,.9,.25,1),
+        background .35s,
+        box-shadow .35s;
 
 }
 
