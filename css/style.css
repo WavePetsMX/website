@@ -32,7 +32,51 @@ body{
     
 }
 
+.logo-link img{
 
+    transition:transform .2s;
+
+}
+
+.logo-link img.salto{
+
+    animation:saltoLogo .45s ease;
+
+}
+
+@keyframes saltoLogo{
+
+    0%{
+
+        transform:translateY(0);
+
+    }
+
+    30%{
+
+        transform:translateY(-8px);
+
+    }
+
+    60%{
+
+        transform:translateY(0);
+
+    }
+
+    80%{
+
+        transform:translateY(-3px);
+
+    }
+
+    100%{
+
+        transform:translateY(0);
+
+    }
+
+}
 
 h1,
 h2,
@@ -1588,6 +1632,23 @@ html{
     z-index:9999;
 }
 
+.modal-content ul{
+
+    display:inline-block;
+
+    text-align:left;
+
+    padding-left:22px;
+
+    margin:12px auto;
+
+}
+
+.modal-content li{
+
+    margin:6px 0;
+
+}
 
 
 .modal-content{
@@ -1613,6 +1674,15 @@ html{
 
     animation: aparecer .25s ease;
 }
+
+.modal-content.modal-equipo h2 {
+    color: #21af2a;
+}
+
+.modal-content.modal-equipo h4 {
+    color: #21af2a;
+}
+
 
 .service-icon{
     pointer-events: auto;
@@ -1675,6 +1745,45 @@ html{
     text-decoration:none;
 }
 
+
+#cerrar-detalles{
+
+    position:absolute;
+
+    top:20px;
+
+    right:20px;
+
+    width:44px;
+
+    height:44px;
+
+    border:none;
+
+    border-radius:50%;
+
+    background:#eef3f8;
+
+    color:#0b1736;
+
+    font-size:24px;
+
+    font-weight:700;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    cursor:pointer;
+
+    transition:.25s;
+
+    z-index:20;
+
+}
+
 .cerrar-servicios,
 .cerrar-marcas,
 .cerrar-spa,
@@ -1711,6 +1820,8 @@ html{
     z-index:100;
 
 }
+
+
 .cerrar-servicios::hover,
 .cerrar-marcas:hover,
 .cerrar-spa:hover,
@@ -2891,9 +3002,9 @@ html{
 
     width:100%;
 
-    height:320px;
+    height:auto;
 
-    object-fit:cover;
+    display:block;
 
     border-radius:16px;
 
@@ -4214,6 +4325,8 @@ html{
 
 }
 
+
+
 /*==================================================
         TARJETAS DE PRODUCTOS
 ==================================================*/
@@ -4718,6 +4831,43 @@ html{
     transform:translateX(20px);
 
     transition:.35s;
+
+}
+
+.barra-scroll{
+
+    width:100%;
+    height:8px;
+
+    background:#e7eef5;
+
+    border-radius:999px;
+
+    overflow:hidden;
+
+    position:relative;
+
+    margin-top:18px;
+
+}
+
+.barra-scroll-progreso{
+
+    position:absolute;
+
+    left:0;
+
+    top:0;
+
+    width:30%;
+
+    height:100%;
+
+    background:#0ea5e9;
+
+    border-radius:999px;
+
+    transition:transform .12s linear;
 
 }
 
