@@ -549,6 +549,24 @@ header{
     transition:transform .5s ease;
 }
 
+    .catalogo-profesional{
+
+    position: relative;
+    overflow: hidden;
+
+    background:
+        linear-gradient(
+            rgba(255,255,255,.90),
+            rgba(255,255,255,.90)
+        ),
+        url("../img/fondohydra.jpg");
+
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+
+}
+
 .service-card{
     position:relative;
     overflow:hidden;
